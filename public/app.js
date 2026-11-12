@@ -23,6 +23,7 @@ const pressBtn = document.getElementById('press-btn');
 const adminPanel = document.getElementById('admin-panel');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
+const continueBtn = document.getElementById('continue-btn');
 const resetBtn = document.getElementById('reset-btn');
 const resetStartBtn = document.getElementById('reset-start-btn');
 const configForm = document.getElementById('config-form');
@@ -155,6 +156,7 @@ pressBtn.addEventListener('click', () => {
 // Admin controls
 startBtn.addEventListener('click', () => socket.emit('admin:start'));
 pauseBtn.addEventListener('click', () => socket.emit('admin:pause'));
+continueBtn.addEventListener('click', () => socket.emit('admin:continue'));
 resetBtn.addEventListener('click', () => socket.emit('admin:reset'));
 resetStartBtn.addEventListener('click', () => socket.emit('admin:resetAndStart'));
 
@@ -191,6 +193,7 @@ function updateAdminButtons() {
   startBtn.disabled = status === 'running' || status === 'stopped';
   startBtn.textContent = status === 'paused' ? 'Resume' : 'Start';
   pauseBtn.disabled = status !== 'running';
+  continueBtn.disabled = status !== 'stopped';
 }
 
 function getClientElapsedMs() {

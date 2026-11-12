@@ -137,6 +137,16 @@ io.on('connection', (socket) => {
     broadcastState();
   });
 
+  socket.on('admin:continue', () => {
+    if (!socket.data?.isAdmin) return;
+    if (gameState.status !== 'stopped') return;
+
+    gameState.winner = null;
+    gameState.startedAt = Date.now();
+    gameState.status = 'running';
+    broadcastState();
+  });
+
   socket.on('admin:reset', () => {
     if (!socket.data?.isAdmin) return;
 
