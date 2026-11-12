@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fastest Finger</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="app">
     <!-- Login Screen -->
@@ -16,14 +18,7 @@
         <p class="subtitle">Enter your name to join the game</p>
       </div>
       <form id="login-form" class="login-form">
-        <input
-          id="name-input"
-          type="text"
-          placeholder="Your name (or admin)"
-          maxlength="40"
-          autocomplete="off"
-          required
-        />
+        <input id="name-input" type="text" placeholder="Your name" maxlength="40" autocomplete="off" required />
         <button type="submit" class="btn btn-primary">Join Game</button>
       </form>
       <p id="login-error" class="error-text hidden"></p>
@@ -86,25 +81,11 @@
           <div class="form-grid">
             <label class="field">
               <span>Points Sequence (last continues)</span>
-              <input
-                id="points-input"
-                type="text"
-                value="10, 5, 3, 1"
-                placeholder="10, 5, 3, 1"
-                required
-              />
+              <input id="points-input" type="text" value="10, 5, 3, 1" placeholder="10, 5, 3, 1" required />
             </label>
             <label class="field">
               <span>Seconds Per Step</span>
-              <input
-                id="step-input"
-                type="number"
-                min="1"
-                max="3600"
-                step="1"
-                value="10"
-                required
-              />
+              <input id="step-input" type="number" min="1" max="3600" step="1" value="10" required />
             </label>
           </div>
           <div class="config-footer">
@@ -124,5 +105,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="app.js"></script>
 </body>
-</html>
 
+</html>
