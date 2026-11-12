@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fastest Finger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Login Screen -->
+    <section id="login-view" class="card login-card">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">⚡</span>
+        <h1>Fastest Finger</h1>
+        <p class="subtitle">Enter your name to join the game</p>
+      </div>
+      <form id="login-form" class="login-form">
+        <input
+          id="name-input"
+          type="text"
+          placeholder="Your name (or admin)"
+          maxlength="40"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Join Game</button>
+      </form>
+      <p id="login-error" class="error-text hidden"></p>
+    </section>
+
+    <!-- Game Screen -->
+    <section id="game-view" class="game-container hidden">
+      <header class="top-bar">
+        <div class="user-info">
+          <span id="player-badge" class="badge"></span>
+          <span id="connection-dot" class="dot online" title="Connected"></span>
+        </div>
+        <button id="logout-btn" class="btn btn-ghost" type="button">Change Name</button>
+      </header>
+
+      <main class="card game-card">
+        <div class="status-row">
+          <span id="status-pill" class="status-pill idle">Waiting to Start</span>
+          <span id="elapsed-label" class="elapsed-label">0.0s</span>
+        </div>
+
+        <div class="points-section">
+          <div class="points-label">POINTS</div>
+          <div id="points-value" class="points-value">10</div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill" style="width: 100%"></div>
+          </div>
+          <div id="timer-caption" class="timer-caption">10.0s</div>
+        </div>
+
+        <div id="winner-banner" class="winner-banner hidden">
+          <div class="winner-label">PRESSED BY</div>
+          <div id="winner-name" class="winner-name"></div>
+          <div id="winner-meta" class="winner-meta"></div>
+        </div>
+
+        <button id="press-btn" class="press-btn" type="button" disabled>
+          PRESS
+        </button>
+      </main>
+
+      <!-- Admin-only Controls -->
+      <aside id="admin-panel" class="card admin-card hidden">
+        <div class="admin-header">
+          <h2>Admin Controls</h2>
+          <span id="players-count" class="players-count">0 online</span>
+        </div>
+
+        <div class="admin-actions">
+          <button id="start-btn" class="btn btn-success" type="button">Start</button>
+          <button id="pause-btn" class="btn btn-warning" type="button">Pause</button>
+          <button id="reset-btn" class="btn btn-secondary" type="button">Reset</button>
+          <button id="reset-start-btn" class="btn btn-primary" type="button">Reset &amp; Start</button>
+        </div>
+
+        <form id="config-form" class="config-form">
+          <div class="form-grid">
+            <label class="field">
+              <span>Points Sequence (last continues)</span>
+              <input
+                id="points-input"
+                type="text"
+                value="10, 5, 3, 1"
+                placeholder="10, 5, 3, 1"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>Seconds Per Step</span>
+              <input
+                id="step-input"
+                type="number"
+                min="1"
+                max="3600"
+                step="1"
+                value="10"
+                required
+              />
+            </label>
+          </div>
+          <div class="config-footer">
+            <button type="submit" class="btn btn-primary">Apply &amp; Reset</button>
+            <span id="admin-msg" class="admin-msg"></span>
+          </div>
+        </form>
+
+        <div class="players-section">
+          <div class="players-title">Connected Players</div>
+          <ul id="players-list" class="players-list"></ul>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

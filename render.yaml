@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: fastest-finger
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+
